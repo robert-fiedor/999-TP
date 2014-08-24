@@ -325,48 +325,48 @@ module.exports = function (grunt) {
 
     // Test settings
     // These will override any config options in karma.conf.js if you create it.
-    karma: {
-      options: {
-        basePath: '',
-        frameworks: ['mocha', 'chai'],
-        files: [
-          '<%= yeoman.app %>/bower_components/angular/angular.js',
-          '<%= yeoman.app %>/bower_components/angular-animate/angular-animate.js',
-          '<%= yeoman.app %>/bower_components/angular-sanitize/angular-sanitize.js',
-          '<%= yeoman.app %>/bower_components/angular-ui-router/release/angular-ui-router.js',
-          '<%= yeoman.app %>/bower_components/ionic/release/js/ionic.js',
-          '<%= yeoman.app %>/bower_components/ionic/release/js/ionic-angular.js',
-          '<%= yeoman.app %>/bower_components/angular-mocks/angular-mocks.js',
-          '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js',
-          'test/mock/**/*.js',
-          'test/spec/**/*.js'
-        ],
-        autoWatch: false,
-        reporters: ['dots', 'coverage'],
-        port: 8080,
-        singleRun: false,
-        preprocessors: {
-          // Update this if you change the yeoman config path
-          'app/scripts/**/*.js': ['coverage']
-        },
-        coverageReporter: {
-          reporters: [
-            { type: 'html', dir: 'coverage/' },
-            { type: 'text-summary' }
-          ]
-        }
-      },
-      unit: {
-        // Change this to 'Chrome', 'Firefox', etc. Note that you will need
-        // to install a karma launcher plugin for browsers other than Chrome.
-        browsers: ['PhantomJS'],
-        background: true
-      },
-      continuous: {
-        browsers: ['PhantomJS'],
-        singleRun: true,
-      }
-    },
+//    karma: {
+//      options: {
+//        basePath: '',
+//        frameworks: ['mocha', 'chai'],
+//        files: [
+//          '<%= yeoman.app %>/bower_components/angular/angular.js',
+//          '<%= yeoman.app %>/bower_components/angular-animate/angular-animate.js',
+//          '<%= yeoman.app %>/bower_components/angular-sanitize/angular-sanitize.js',
+//          '<%= yeoman.app %>/bower_components/angular-ui-router/release/angular-ui-router.js',
+//          '<%= yeoman.app %>/bower_components/ionic/release/js/ionic.js',
+//          '<%= yeoman.app %>/bower_components/ionic/release/js/ionic-angular.js',
+//          '<%= yeoman.app %>/bower_components/angular-mocks/angular-mocks.js',
+//          '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js',
+//          'test/mock/**/*.js',
+//          'test/spec/**/*.js'
+//        ],
+//        autoWatch: false,
+//        reporters: ['dots', 'coverage'],
+//        port: 8080,
+//        singleRun: false,
+//        preprocessors: {
+//          // Update this if you change the yeoman config path
+//          'app/scripts/**/*.js': ['coverage']
+//        },
+//        coverageReporter: {
+//          reporters: [
+//            { type: 'html', dir: 'coverage/' },
+//            { type: 'text-summary' }
+//          ]
+//        }
+//      },
+//      unit: {
+//        // Change this to 'Chrome', 'Firefox', etc. Note that you will need
+//        // to install a karma launcher plugin for browsers other than Chrome.
+//        browsers: ['PhantomJS'],
+//        background: true
+//      },
+//      continuous: {
+//        browsers: ['PhantomJS'],
+//        singleRun: true,
+//      }
+//    },
 
     // ngAnnotate tries to make the code safe for minification automatically by
     // using the Angular long form for dependency injection.
@@ -442,14 +442,14 @@ module.exports = function (grunt) {
 
   // Dynamically configure `karma` target of `watch` task so that
   // we don't have to run the karma test server as part of `grunt serve`
-  grunt.registerTask('watch:karma', function () {
-    var karma = {
-      files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js', 'test/spec/**/*.js'],
-      tasks: ['newer:jshint:test', 'karma:unit:run']
-    };
-    grunt.config.set('watch', karma);
-    return grunt.task.run(['watch']);
-  });
+//  grunt.registerTask('watch:karma', function () {
+//    var karma = {
+//      files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js', 'test/spec/**/*.js'],
+//      tasks: ['newer:jshint:test', 'karma:unit:run']
+//    };
+//    grunt.config.set('watch', karma);
+//    return grunt.task.run(['watch']);
+//  });
 
   grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
@@ -470,9 +470,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'concurrent:test',
-    'autoprefixer',
-    'karma:unit:start',
-    'watch:karma'
+    'autoprefixer'
   ]);
 
   grunt.registerTask('build', [
@@ -494,11 +492,10 @@ module.exports = function (grunt) {
 
   grunt.registerTask('cordova', ['copy:all', 'cordova:build']);
 
-  grunt.registerTask('coverage', ['karma:continuous', 'connect:coverage:keepalive']);
+  grunt.registerTask('coverage', [ 'connect:coverage:keepalive']);
 
   grunt.registerTask('default', [
     'newer:jshint',
-    'karma:continuous',
     'build'
   ]);
 };
